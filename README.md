@@ -2,7 +2,7 @@
 
 #### 分享一些自己瞎写的函数库和字幕
 
-#### https://space.bilibili.com/346816900/channel/detail?cid=81879
+#### https://space.bilibili.com/346816900/channel/seriesdetail?sid=231885
 **一般来说是和b站一同更新，所以b站未更新该仓库就应该不会更新**
 
 可能会发布更多函数库
