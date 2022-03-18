@@ -1,6 +1,7 @@
 ﻿
 --代码写的很烂，基本没有更改过，希望大家不要嫌弃
---函数库介绍和字幕示例见：https://space.bilibili.com/346816900/channel/detail?cid=81879
+--函数库介绍和字幕示例见：https://space.bilibili.com/346816900/channel/detail?cid=81879（该死的b站，此链接已失效）
+--函数库介绍和字幕示例见：https://space.bilibili.com/346816900/channel/seriesdetail?sid=231885
 
 
 local space={}
