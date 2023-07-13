@@ -1,5 +1,11 @@
 
 
+--我又瞎写了个破烂函数库
+--我b站账号：https://space.bilibili.com/346816900
+--Aegisub视频整合：https://space.bilibili.com/346816900/channel/seriesdetail?sid=231885
+--转载请注明作者和出处！
+
+
 local Exkit={}
 
 function Exkit.derivative_1st(f,x,eps)
