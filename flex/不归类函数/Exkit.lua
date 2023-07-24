@@ -160,16 +160,6 @@ function Exkit.curve_t_at_s_robust(x,y,t1,t2,s,L,x1,y1)--超高精度数值积�
 	return Exkit.modAB(func,0,t2-t1,1e-5)
 end
 
-function Exkit.argz(x,y)
-	if y==0 then
-		local a=x<0 and math.pi or 0
-		return math.deg(a),a
-	else
-		local a=math.atan(y/x)+(x<0 and 1 or 0)*Exkit.sgn(y)*math.pi
-		return math.deg(a),a
-	end
-end
-
 function Exkit.Mround2(num)--个人最常用的，保留两位小数
 	return math.floor(num*100+.5)/100
 end
@@ -185,7 +175,7 @@ function Exkit.curve_to_px_robust(x,y,t1,t2,ds,accel,x1,y1,L)--超高精度数�
 		local a=type(accel)=='function' and accel(i,n) or accel
 		local s=(i-1)/(n-1) local t=t1+Exkit.curve_t_at_s_robust(x,y,t1,t2,s^a,L,x1,y1)
 		local vx,vy=x1 and x1(t) or Exkit.derivative_1st(x,t),y1 and y1(t) or Exkit.derivative_1st(y,t)
-		local angle=-Exkit.argz(vx,vy) local pt_x,pt_y=x(t),y(t)
+		local angle=-math.deg(math.atan2(vy,vx)) local pt_x,pt_y=x(t),y(t)
 		px[i]={x=Exkit.Mround2(pt_x),y=Exkit.Mround2(pt_y),angle=Exkit.Mround2(angle)}
 	end
 	return px
@@ -335,7 +325,7 @@ function Exkit.curve_to_px(x,y,t1,t2,ds,n,accel,x1,y1)--匀速化一般参数曲
 				local s=(at_len-L0)/cnt[k]
 				local t=t1+(k-1)*d+Exkit.curve_t_at_s(x,y,t1+(k-1)*d,t1+k*d,s,cnt[k],x1,y1)
 				local vx,vy=x1 and x1(t) or Exkit.derivative_1st(x,t),y1 and y1(t) or Exkit.derivative_1st(y,t)
-				local angle=-Exkit.argz(vx,vy) local pt_x,pt_y=x(t),y(t)
+				local angle=-math.deg(math.atan2(vy,vx)) local pt_x,pt_y=x(t),y(t)
 				px[#px+1]={x=Exkit.Mround2(pt_x),y=Exkit.Mround2(pt_y),angle=Exkit.Mround2(angle)} break
 			end
 		end
@@ -348,7 +338,7 @@ function Exkit.curve_to_px_raw(x,y,t1,t2,N,x1,y1)--原速的参数曲线
 	for i=1,N do
 		local t=t1+(i-1)/(N-1)*(t2-t1)
 		local vx,vy=x1 and x1(t) or Exkit.derivative_1st(x,t),y1 and y1(t) or Exkit.derivative_1st(y,t)
-		local angle=-Exkit.argz(vx,vy) local pt_x,pt_y=x(t),y(t)
+		local angle=-math.deg(math.atan2(vy,vx)) local pt_x,pt_y=x(t),y(t)
 		px[#px+1]={x=Exkit.Mround2(pt_x),y=Exkit.Mround2(pt_y),angle=Exkit.Mround2(angle)}
 	end
 	return px
@@ -416,7 +406,7 @@ function Exkit.Bezier_to_px(x,y,ds,accel,n)--匀速n阶贝塞尔曲线(精准快
 			else local s=(at_len-L0)/cnt[k]
 				local t=(k-1)*d+Exkit.Bezier_t_at_s(x,y,(k-1)*d,k*d,s,cnt[k])
 				local vx,vy=Exkit.Bezier_derivative_1st(x,y,t)
-				local angle=-Exkit.argz(vx,vy) local pt_x,pt_y=Exkit.Bezier(x,y,t)
+				local angle=-math.deg(math.atan2(vy,vx)) local pt_x,pt_y=Exkit.Bezier(x,y,t)
 				px[#px+1]={x=Exkit.Mround2(pt_x),y=Exkit.Mround2(pt_y),angle=Exkit.Mround2(angle)} break
 			end
 		end
@@ -428,7 +418,7 @@ function Exkit.Bezier_to_px_raw(x,y,N)--原始速度的n阶贝塞尔曲线
 	local px={}
 	for i=1,N do
 		local t=(i-1)/(N-1) local vx,vy=Exkit.Bezier_derivative_1st(x,y,t)
-		local angle=-Exkit.argz(vx,vy) local pt_x,pt_y=Exkit.Bezier(x,y,t)
+		local angle=-math.deg(math.atan2(vy,vx)) local pt_x,pt_y=Exkit.Bezier(x,y,t)
 		px[#px+1]={x=Exkit.Mround2(pt_x),y=Exkit.Mround2(pt_y),angle=Exkit.Mround2(angle)}
 	end
 	return px
