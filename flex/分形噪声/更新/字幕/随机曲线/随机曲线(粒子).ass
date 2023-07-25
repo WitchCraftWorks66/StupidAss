@@ -25,7 +25,7 @@ Style: Default,Arial,20,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Comment: 0,0:00:00.00,0:00:06.98,Default,,0,0,0,code once,noise=_G.noise
 Comment: 0,0:00:00.00,0:00:06.98,Default,,0,0,0,code once, noise.get_perm( )
-Comment: 0,0:00:00.00,0:00:06.98,Default,,0,0,0,code once,xx={} for i=1,666 do local n=noise.perlin3d( i/30 , 233 , 0 ) local amp=66 xx[i]={x=i,y=n*amp} end
+Comment: 0,0:00:00.00,0:00:06.98,Default,,0,0,0,code once,xx={} for i=1,666 do local n=noise.perlin3d( i/30 , 233 , 0.3 ) local amp=66 xx[i]={x=i,y=n*amp} end
 Comment: 0,0:00:00.00,0:00:06.98,Default,,0,0,0,template line notext,!gloop(#xx)!{\p1\an7\pos(!xx[j].x + 66 !,!xx[j].y +150 !)\fsc300 }m 0 0 l 1 0 1 1 0 1
 Comment: 0,0:00:00.00,0:00:05.00,Default,,0,0,0,karaoke,
 Dialogue: 0,0:00:00.00,0:00:05.00,Default,,0,0,0,fx,{\p1\an7\pos(67,150)\fsc300 }m 0 0 l 1 0 1 1 0 1
